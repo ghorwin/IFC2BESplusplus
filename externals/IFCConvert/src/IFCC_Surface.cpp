@@ -246,13 +246,20 @@ bool Surface::addSubSurface(const Surface& subsurface) {
 	if(!sub.isValid())
 		return false;
 
-	sub.set(GUID_maker::instance().guid(), subsurface.m_name, subsurface.m_elementEntityId);
+	sub.set(subsurface.id(), subsurface.m_name, subsurface.m_elementEntityId);
 	m_subSurfaces.push_back(sub);
 	return true;
 }
 
 double Surface::area() const {
 	return areaPolygon(m_polyVect);
+}
+
+void Surface::flip() {
+	std::reverse(m_polyVect.begin(), m_polyVect.end());
+	for(auto& sub : m_subSurfaces) {
+		sub.flip();
+	}
 }
 
 TiXmlElement * Surface::writeXML(TiXmlElement * parent) const {
@@ -305,28 +312,28 @@ bool Surface::isValid() const {
 	return m_polyVect.size() > 2;
 }
 
-VICUS::Surface Surface::getVicusObject(std::map<int,int>& idMap, int& nextid) const {
-	VICUS::Surface res;
-	int newId = nextid++;
-	res.m_displayName = QString::fromUtf8(m_name.c_str());
-	res.setPolygon3D(m_polyVect);
-	res.m_id = newId;
-	idMap[m_id] = newId;
+//VICUS::Surface Surface::getVicusObject(std::map<int,int>& idMap, int& nextid) const {
+//	VICUS::Surface res;
+//	int newId = nextid++;
+//	res.m_displayName = QString::fromUtf8(m_name.c_str());
+//	res.setPolygon3D(m_polyVect);
+//	res.m_id = newId;
+//	idMap[m_id] = newId;
 
-	std::vector<VICUS::SubSurface> vicusSubs;
-	for(const auto& subsurf : m_subSurfaces) {
-		VICUS::SubSurface vs;
-		int newIdSub = nextid++;
-		vs.m_id = newIdSub;
-		idMap[subsurf.id()] = newIdSub;
-		vs.m_displayName = QString::fromUtf8(subsurf.name().c_str());
-		vs.m_polygon2D = subsurf.polygon();
-		vicusSubs.push_back(vs);
-	}
-	res.setSubSurfaces(vicusSubs);
+//	std::vector<VICUS::SubSurface> vicusSubs;
+//	for(const auto& subsurf : m_subSurfaces) {
+//		VICUS::SubSurface vs;
+//		int newIdSub = nextid++;
+//		vs.m_id = newIdSub;
+//		idMap[subsurf.id()] = newIdSub;
+//		vs.m_displayName = QString::fromUtf8(subsurf.name().c_str());
+//		vs.m_polygon2D = subsurf.polygon();
+//		vicusSubs.push_back(vs);
+//	}
+//	res.setSubSurfaces(vicusSubs);
 
-	return res;
-}
+//	return res;
+//}
 
 void surfacesFromMeshSets(std::vector<shared_ptr<carve::mesh::MeshSet<3> > >& meshsets, std::vector<Surface>& surfaces) {
 	if(meshsets.empty())

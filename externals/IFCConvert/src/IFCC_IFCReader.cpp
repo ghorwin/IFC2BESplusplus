@@ -2,6 +2,8 @@
 
 #include "IFCC_Helper.h"
 
+#include <QDebug>
+
 #include <ifcpp/IFC4/include/IfcRelSpaceBoundary.h>
 #include <ifcpp/IFC4/include/IfcWall.h>
 #include <ifcpp/IFC4/include/IfcBeam.h>
@@ -147,61 +149,61 @@ void IFCReader::splitShapeData() {
 		const std::shared_ptr<IfcObjectDefinition> od = data->m_ifc_object_definition.lock();
 		if(dynamic_pointer_cast<IfcElement>(od) != nullptr) {
 			if(dynamic_pointer_cast<IfcWall>(od) != nullptr) {
-				m_elementEntitesShape[OT_Wall].push_back(data);
+				m_elementEntitesShape[BET_Wall].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcBeam>(od) != nullptr) {
-				m_elementEntitesShape[OT_Beam].push_back(data);
+				m_elementEntitesShape[BET_Beam].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcChimney>(od) != nullptr) {
-				m_elementEntitesShape[OT_Chimney].push_back(data);
+				m_elementEntitesShape[BET_Chimney].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcCovering>(od) != nullptr) {
-				m_elementEntitesShape[OT_Covering].push_back(data);
+				m_elementEntitesShape[BET_Covering].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcCurtainWall>(od) != nullptr) {
-				m_elementEntitesShape[OT_CurtainWall].push_back(data);
+				m_elementEntitesShape[BET_CurtainWall].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcDoor>(od) != nullptr) {
-				m_elementEntitesShape[OT_Door].push_back(data);
+				m_elementEntitesShape[BET_Door].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcFooting>(od) != nullptr) {
-				m_elementEntitesShape[OT_Footing].push_back(data);
+				m_elementEntitesShape[BET_Footing].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcMember>(od) != nullptr) {
-				m_elementEntitesShape[OT_Member].push_back(data);
+				m_elementEntitesShape[BET_Member].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcPile>(od) != nullptr) {
-				m_elementEntitesShape[OT_Pile].push_back(data);
+				m_elementEntitesShape[BET_Pile].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcPlate>(od) != nullptr) {
-				m_elementEntitesShape[OT_Plate].push_back(data);
+				m_elementEntitesShape[BET_Plate].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcRailing>(od) != nullptr) {
-				m_elementEntitesShape[OT_Railing].push_back(data);
+				m_elementEntitesShape[BET_Railing].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcRamp>(od) != nullptr) {
-				m_elementEntitesShape[OT_Ramp].push_back(data);
+				m_elementEntitesShape[BET_Ramp].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcRampFlight>(od) != nullptr) {
-				m_elementEntitesShape[OT_RampFlight].push_back(data);
+				m_elementEntitesShape[BET_RampFlight].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcRoof>(od) != nullptr) {
-				m_elementEntitesShape[OT_Roof].push_back(data);
+				m_elementEntitesShape[BET_Roof].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcShadingDevice>(od) != nullptr) {
-				m_elementEntitesShape[OT_ShadingDevice].push_back(data);
+				m_elementEntitesShape[BET_ShadingDevice].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcSlab>(od) != nullptr) {
-				m_elementEntitesShape[OT_Slab].push_back(data);
+				m_elementEntitesShape[BET_Slab].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcStair>(od) != nullptr) {
-				m_elementEntitesShape[OT_Stair].push_back(data);
+				m_elementEntitesShape[BET_Stair].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcStairFlight>(od) != nullptr) {
-				m_elementEntitesShape[OT_StairFlight].push_back(data);
+				m_elementEntitesShape[BET_StairFlight].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcWindow>(od) != nullptr) {
-				m_elementEntitesShape[OT_Window].push_back(data);
+				m_elementEntitesShape[BET_Window].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcFeatureElement>(od) != nullptr) {
 				if(dynamic_pointer_cast<IfcOpeningElement>(od) != nullptr) {
@@ -209,34 +211,34 @@ void IFCReader::splitShapeData() {
 					m_openingsShape[guid] = data;
 				}
 
-				m_elementEntitesShape[OT_FeatureElement].push_back(data);
+				m_elementEntitesShape[BET_FeatureElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcCivilElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_CivilElement].push_back(data);
+				m_elementEntitesShape[BET_CivilElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcDistributionElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_DistributionElement].push_back(data);
+				m_elementEntitesShape[BET_DistributionElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcElementAssembly>(od) != nullptr) {
-				m_elementEntitesShape[OT_ElementAssembly].push_back(data);
+				m_elementEntitesShape[BET_ElementAssembly].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcElementComponent>(od) != nullptr) {
-				m_elementEntitesShape[OT_ElementComponent].push_back(data);
+				m_elementEntitesShape[BET_ElementComponent].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcFurnishingElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_FurnishingElement].push_back(data);
+				m_elementEntitesShape[BET_FurnishingElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcGeographicElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_GeographicalElement].push_back(data);
+				m_elementEntitesShape[BET_GeographicalElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcTransportElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_TransportElement].push_back(data);
+				m_elementEntitesShape[BET_TransportElement].push_back(data);
 			}
 			else if(dynamic_pointer_cast<IfcVirtualElement>(od) != nullptr) {
-				m_elementEntitesShape[OT_VirtualElement].push_back(data);
+				m_elementEntitesShape[BET_VirtualElement].push_back(data);
 			}
 			else {
-				m_elementEntitesShape[OT_All].push_back(data);
+				m_elementEntitesShape[BET_All].push_back(data);
 			}
 		}
 		else if(dynamic_pointer_cast<IfcSpatialStructureElement>(od) != nullptr) {
@@ -274,8 +276,8 @@ void IFCReader::splitShapeData() {
 	}
 
 	Logger::instance() << "IFCReader splitShapeData end";
-	Logger::instance() << std::to_string(m_elementEntitesShape[OT_Wall].size()) + " walls.";
-	Logger::instance() << std::to_string(m_elementEntitesShape[OT_Window].size()) + " windows.";
+	Logger::instance() << std::to_string(m_elementEntitesShape[BET_Wall].size()) + " walls.";
+	Logger::instance() << std::to_string(m_elementEntitesShape[BET_Window].size()) + " windows.";
 	Logger::instance() << std::to_string(m_buildingsShape.size()) + " buildings.";
 	Logger::instance() << std::to_string(m_storeysShape.size()) + " storeys.";
 	Logger::instance() << std::to_string(m_spaceEntitesShape.size()) + " spaces.";
@@ -305,14 +307,13 @@ bool IFCReader::convert(bool useSpaceBoundaries) {
 		// convert IFC geometric representations into Carve geometry
 		const double length_in_meter = m_geometryConverter.getBuildingModel()->getUnitConverter()->getLengthInMeterFactor();
 		m_geometryConverter.setCsgEps(1.5e-08 * length_in_meter);
-		std::vector<std::string> errmsgs;
-		m_geometryConverter.convertGeometry(subtractOpenings,errmsgs);
-		if(!errmsgs.empty()) {
-			for(const std::string& str : errmsgs) {
-				m_errorText += str + "\n";
-			}
-			m_hasError = true;
-		}
+		m_geometryConverter.convertGeometry(subtractOpenings, m_convertErrors);
+//		if(!errmsgs.empty()) {
+//			for(const std::string& str : errmsgs) {
+//				m_errorText += str + "\n";
+//			}
+//			m_hasError = true;
+//		}
 
 		Logger::instance() << "IFCReader convert init";
 
@@ -398,10 +399,11 @@ bool IFCReader::convert(bool useSpaceBoundaries) {
 			for(auto& building : m_site.m_buildings) {
 				building->fetchStoreys(m_storeysShape, m_spaceEntitesShape);
 				building->updateStoreys(m_elementEntitesShape, m_spaceEntitesShape, m_geometryConverter.getBuildingModel()->getUnitConverter(),
-									   m_buildingElements, m_openings, m_useSpaceBoundaries);
+									   m_buildingElements, m_openings, m_useSpaceBoundaries, m_convertErrors);
 			}
 		}
 		else {
+			m_convertErrors.push_back({OT_Site, -1, "No site"});
 			m_errorText = "No site";
 			m_hasError = true;
 			return false;
@@ -409,9 +411,9 @@ bool IFCReader::convert(bool useSpaceBoundaries) {
 
 		Logger::instance() << "IFCReader convert building structure set";
 
-		int failures = m_instances.collectComponentInstances(m_buildingElements, m_database, m_site);
-		if(failures > 0) {
-			m_errorText += "\nNot all surface can be matched to a component. failures: " + std::to_string(failures);
+		m_instances.collectComponentInstances(m_buildingElements, m_database, m_site, m_convertErrors);
+
+		if(!m_convertErrors.empty()) {
 			m_hasError = true;
 //			return false;
 		}
@@ -423,7 +425,10 @@ bool IFCReader::convert(bool useSpaceBoundaries) {
 
 	}
 	catch (std::exception& e) {
-		m_errorText = e.what();
+		ConvertError err;
+		err.m_objectType = OT_Unknown;
+		err.m_errorText = "Exception: '" + std::string(e.what()) + "' while converting ifc file.";
+		m_convertErrors.push_back(err);
 		m_hasError = true;
 
 		Logger::instance() << "IFCReader convert exception";
@@ -433,37 +438,6 @@ bool IFCReader::convert(bool useSpaceBoundaries) {
 	Logger::instance() << "IFCReader convert error at end";
 
 	return false;
-}
-
-bool IFCReader::setVicusProject(VICUS::Project* project) {
-	IBK_ASSERT(project != nullptr);
-
-	Logger::instance() << "IFCReader setVicusProject start";
-
-	std::map<int,int> idConversionMap;
-
-	// add building structure
-	int nextId = project->nextUnusedID();
-
-	project->m_ifcFilePath = m_filename;
-
-	for(auto& building : m_site.m_buildings) {
-		project->m_buildings.emplace_back(building->getVicusObject(idConversionMap, nextId));
-	}
-
-	Logger::instance() << "IFCReader setVicusProject building structure added";
-
-	// add databases
-	m_database.addToVicusProject(project, idConversionMap);
-
-	Logger::instance() << "IFCReader setVicusProject database added";
-
-	// add component instances
-	m_instances.addToVicusProject(project, idConversionMap);
-
-	Logger::instance() << "IFCReader setVicusProject component instances added";
-
-	return true;
 }
 
 int IFCReader::totalNumberOfIFCEntities() const {
@@ -487,6 +461,13 @@ int IFCReader::numberOfIFCSpaceBoundaries() const {
 	return count;
 }
 
+bool IFCReader::flipPolygons() const {
+	return m_flipPolygons;
+}
+
+void IFCReader::setFlipPolygons(bool flipPolygons) {
+	m_flipPolygons = flipPolygons;
+}
 
 void IFCReader::writeXML(const IBK::Path & filename) const {
 	TiXmlDocument doc;
@@ -501,7 +482,7 @@ void IFCReader::writeXML(const IBK::Path & filename) const {
 	TiXmlElement * e = new TiXmlElement("Project");
 	root->LinkEndChild(e);
 
-	m_site.writeXML(e);
+	m_site.writeXML(e, m_flipPolygons);
 
 	m_instances.writeXML(e);
 
@@ -510,6 +491,39 @@ void IFCReader::writeXML(const IBK::Path & filename) const {
 	// other files
 
 	doc.SaveFile( filename.c_str() );
+}
+
+
+void IFCReader::setVicusProjectText(QString& projectText) {
+	TiXmlDocument doc;
+	TiXmlDeclaration * decl = new TiXmlDeclaration( "1.0", "UTF-8", "" );
+	doc.LinkEndChild( decl );
+
+	TiXmlElement * root = new TiXmlElement( "VicusProject" );
+	doc.LinkEndChild(root);
+
+	root->SetAttribute("fileVersion", VERSION);
+
+	TiXmlElement * e = new TiXmlElement("Project");
+	root->LinkEndChild(e);
+
+	m_site.writeXML(e, m_flipPolygons);
+
+	m_instances.writeXML(e);
+
+	m_database.writeXML(e);
+
+	// other files
+
+	// Declare a printer
+	TiXmlPrinter printer;
+
+	// attach it to the document you want to convert in to a std::string
+	doc.Accept(&printer);
+
+	// Create a std::string and copy your document data in to the string
+	std::string str = printer.CStr();
+	projectText = QString::fromStdString(str);
 }
 
 
@@ -525,7 +539,7 @@ struct SpaceBoundaryEvaluation {
 	QString	m_name;
 	QString	m_nameRelatedElement;
 	QString	m_nameRelatedSpace;
-	ObjectTypes	m_typeRelatedElement;
+	BuildingElementTypes	m_typeRelatedElement;
 
 	static QString typeString(Type type) {
 		switch(type) {
@@ -586,18 +600,19 @@ QStringList IFCReader::statistic() const {
 			result << tr("\tStorey %1 with %2 spaces.").arg(QString::fromStdString(storey->m_name))
 					.arg(storey->spaces().size());
 			for(const auto& space : storey->spaces()) {
-				result << tr("\t\tSpace %1 with %2 space boundaries and %3 surfaces.").arg(QString::fromStdString(space->m_name+" - "+space->m_longName))
-						.arg(space->spaceBoundaries().size()).arg(space->surfaces().size());
-				for(const auto& surf : space->surfaces()) {
-					if(surf.isMissing()) {
-						result << tr("\t\t\tSurface %1 with missing connection.").arg(QString::fromStdString(surf.name()));
+				result << tr("\t\tSpace %1 with %2 space boundaries.")
+						  .arg(QString::fromStdString(space->m_name+" - "+space->m_longName))
+						  .arg(space->spaceBoundaries().size());
+				for(const auto& sb : space->spaceBoundaries()) {
+					if(sb->isMissing()) {
+						result << tr("\t\tSpace boundary %1 with missing connection.").arg(QString::fromStdString(sb->m_name));
 					}
-					else if(surf.isVirtual()) {
-						result << tr("\t\t\tSurface %1 is virtual.").arg(QString::fromStdString(surf.name()));
+					else if(sb->isVirtual()) {
+						result << tr("\t\tSpace boundary %1 is virtual.").arg(QString::fromStdString(sb->m_name));
 					}
 					else {
-						result << tr("\t\t\tSurface %1 with %2 subsurfaces.").arg(QString::fromStdString(surf.name()))
-								.arg(surf.subSurfaces().size());
+						result << tr("\t\tSpace boundary %1 with %2 subsurfaces.").arg(QString::fromStdString(sb->m_name))
+								.arg(sb->containedOpeningSpaceBoundaries().size());
 					}
 				}
 			}
@@ -651,6 +666,10 @@ QStringList IFCReader::statistic() const {
 	return result;
 }
 
+const std::vector<ConvertError>& IFCReader::convertErrors() const {
+	return m_convertErrors;
+}
+
 void IFCReader::messageTarget( void* ptr, shared_ptr<StatusCallback::Message> m ) {
 	if(ptr == nullptr)
 		return;
@@ -675,17 +694,16 @@ void IFCReader::messageTarget( void* ptr, shared_ptr<StatusCallback::Message> m 
 	}
 }
 
-bool IFCReader::typeByGuid(const std::string& guid, std::pair<ObjectTypes,std::shared_ptr<ProductShapeData>>& res) {
+bool IFCReader::typeByGuid(const std::string& guid, std::pair<BuildingElementTypes,std::shared_ptr<ProductShapeData>>& res) {
 	for(const auto& elemType : m_elementEntitesShape) {
 		for(const auto& elem : elemType.second) {
 			if(guid == ws2s(elem->m_entity_guid)) {
-				res = std::pair<ObjectTypes,std::shared_ptr<ProductShapeData>>(elemType.first,elem);
+				res = std::pair<BuildingElementTypes,std::shared_ptr<ProductShapeData>>(elemType.first,elem);
 				return true;
 			}
 		}
 	}
 	return false;
 }
-
 
 } // end namespace

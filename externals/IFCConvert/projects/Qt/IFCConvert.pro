@@ -29,13 +29,12 @@ INCLUDEPATH += \
 				../../../../submodules/SIM-VICUS/externals/TiCPP/src \
 				../../../ifcplusplus/src/external/Carve/src/include \
 				../../../ifcplusplus/src/external \
-				../../../ifcplusplus/src/external/Carve/src/common \
-				../../../../submodules/SIM-VICUS/externals/Vicus/src \
-				../../../../submodules/SIM-VICUS/externals/Nandrad/src
+				../../../ifcplusplus/src/external/Carve/src/common
 
 SOURCES +=  \
 	../../src/IFCC_Building.cpp \
 	../../src/IFCC_BuildingElement.cpp \
+	../../src/IFCC_BuildingElementsCollector.cpp \
 	../../src/IFCC_BuildingStorey.cpp \
 	../../src/IFCC_Clippertools.cpp \
 	../../src/IFCC_Component.cpp \
@@ -71,6 +70,7 @@ SOURCES +=  \
 HEADERS +=  \
 	../../src/IFCC_Building.h \
 	../../src/IFCC_BuildingElement.h \
+	../../src/IFCC_BuildingElementsCollector.h \
 	../../src/IFCC_BuildingStorey.h \
 	../../src/IFCC_Clippertools.h \
 	../../src/IFCC_Component.h \
